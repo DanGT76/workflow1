@@ -18,20 +18,8 @@ jobs:
         with:
           python-version: "3.9"
 
-      - name: Carregar cache do Poetry
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/pypoetry
-            ~/.local/share/pypoetry
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-poetry-
-
       - name: Instalar Poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
+        run: pip install poetry        # ← mudança aqui
 
       - name: Instalar dependências
         run: poetry install --no-root --no-interaction
